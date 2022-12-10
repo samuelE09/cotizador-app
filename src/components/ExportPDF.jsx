@@ -1,5 +1,4 @@
 import {useState,useContext} from 'react'
-
 import {CotizadorContext} from '../contexts/CotizadorApp'
 import jsPDF from 'jspdf'
 import "jspdf-autotable"
