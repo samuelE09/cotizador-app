@@ -5,7 +5,7 @@ import ManoObraComponent from './ManoObra'
 
 function ProductList() {
 
-    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, subtotal_obra, total} = useContext(CotizadorContext)
+    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, total} = useContext(CotizadorContext)
 
     if (productos.length == 0 && ManoObra.length==0){
         return <div className="alert alert-info mt-4 text-center" role="alert">

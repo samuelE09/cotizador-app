@@ -104,7 +104,7 @@ export function CotizadorAppProvider(props) {
          agregarManoObra,
          borrarManoObra,
          hoy,mes,año,
-         subtotal_producto,subtotal_obra,total
+         subtotal_producto,total
         }}>
           {props.children}
       </CotizadorContext.Provider>
