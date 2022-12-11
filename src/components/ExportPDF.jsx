@@ -2,7 +2,7 @@ import {useState,useContext} from 'react'
 import {CotizadorContext} from '../contexts/CotizadorApp'
 import jsPDF from 'jspdf'
 import "jspdf-autotable"
-import Swal from 'sweetAlert2'
+import Swal from 'sweetalert2'
 
 function ExportPDF() {
 

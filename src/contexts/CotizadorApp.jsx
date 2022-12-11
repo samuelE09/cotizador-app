@@ -1,5 +1,5 @@
 import {createContext, useState, useEffect} from 'react'
-import Swal from 'sweetAlert2'
+import Swal from 'sweetalert2'
 
 
 export const CotizadorContext = createContext()

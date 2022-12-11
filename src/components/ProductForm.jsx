@@ -2,7 +2,7 @@ import {useContext, useState} from 'react'
 import {CotizadorContext} from '../contexts/CotizadorApp'
 import "./style.css"
 
-import Swal from 'sweetAlert2'
+import Swal from 'sweetalert2'
 
 function ProductForm() {
 

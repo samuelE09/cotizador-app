@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react'
 import {CotizadorContext} from '../contexts/CotizadorApp'
-import Swal from 'sweetAlert2'
+import Swal from 'sweetalert2'
 
 function ManoObraComponent() {
 
