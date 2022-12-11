@@ -34,7 +34,7 @@ function App() {
             </a> 
           </li>
           <li className="ms-3">
-            <a href="" target="_blank" className='svg_social'>
+            <a href="https://www.paypal.com/donate/?hosted_button_id=FXLEYP4FXC5B2" target="_blank" className='svg_social'>
               <img src="./paypal.svg" alt="paypal" width="30" height="30"/>
             </a> 
           </li>
