@@ -24,8 +24,8 @@ function App() {
         </div>
         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
           <li className="ms-3">
-            <a href="https://github.com/samuelE09" target="_blank" className='svg_social'>
-              <img src="./github.svg" alt="GitHub" width="30" height="30"/>
+            <a href="https://forms.gle/gopd51qgPBuVJRZ17" target="_blank" className='svg_social'>
+              <img src="./coments.svg" alt="GitHub" width="30" height="30"/>
             </a> 
           </li>
           <li className="ms-3">

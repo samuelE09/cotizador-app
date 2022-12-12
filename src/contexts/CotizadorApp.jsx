@@ -21,6 +21,12 @@ export function CotizadorAppProvider(props) {
 
     useEffect(() => {
       setProductos(productos)
+      Swal.fire({
+        icon: 'info',
+        title: 'Gracias por estar Aquí!',
+        text: 'Esta es una Herramienta disponible para uso totalmente gratuito!',
+        footer: 'Al final puedes encontrar los iconos de un Formulario y de Paypal por si deseas dejarme tu Feedback o realizar alguna Donación'
+      })
     }, [])
 
     useEffect(() => {
