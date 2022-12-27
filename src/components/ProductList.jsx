@@ -5,7 +5,7 @@ import ManoObraComponent from './ManoObra'
 
 function ProductList() {
 
-    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, total} = useContext(CotizadorContext)
+    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, total, moneda} = useContext(CotizadorContext)
 
     if (productos.length == 0 && ManoObra.length==0){
         return <div className="alert alert-info mt-4 text-center" role="alert">
@@ -41,8 +41,14 @@ function ProductList() {
                                     <td>{producto.descripcion_product}</td>
                                     <td>{producto.cantidad_product}</td>
                                     <td>{producto.medida}</td>
-                                    <td>$ {producto.precioUND}</td>
-                                    <td>$ {producto.precio_total}</td>
+                                    <td>
+                                        <span>{moneda} </span>
+                                        {producto.precioUND}
+                                    </td>
+                                    <td>
+                                        <span>{moneda} </span>
+                                        {producto.precio_total}
+                                    </td>
                                     <td>
                                         <button
                                             className='btn'
@@ -59,7 +65,9 @@ function ProductList() {
                                 <td className='fw-bold'></td>
                                 <td className='fw-bold'></td>
                                 <td className='fw-bold'>SubTotal</td>
-                                <td className='fw-bold'>$ {parseFloat(subtotal_producto).toFixed(2)}</td>
+                                <td className='fw-bold'>
+                                    <span>{moneda} </span>
+                                    {parseFloat(subtotal_producto).toFixed(2)}</td>
                                 <td className='fw-bold'></td>   
                             </tr>
                             {ManoObra.map( (obra, index )=> (
@@ -69,7 +77,9 @@ function ProductList() {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td className='text-center'>$ {parseFloat(obra.precioManoObra).toFixed(2)}</td>
+                                    <td className='text-center'>
+                                        <span>{moneda} </span>
+                                        {parseFloat(obra.precioManoObra).toFixed(2)}</td>
                                     <td>
                                         <button
                                             className='btn'
@@ -85,7 +95,9 @@ function ProductList() {
                                 <td className='fw-bold'></td>
                                 <td className='fw-bold'></td>
                                 <td className='fw-bold'>Total</td>
-                                <td className='fw-bold'>$ {parseFloat(total).toFixed(2)}</td>
+                                <td className='fw-bold'>
+                                    <span>{moneda} </span>
+                                    {parseFloat(total).toFixed(2)}</td>
                                 <td className='fw-bold'></td>   
                             </tr>
                         </tbody>
