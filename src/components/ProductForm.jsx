@@ -1,17 +1,19 @@
 import {useContext, useState} from 'react'
 import {CotizadorContext} from '../contexts/CotizadorApp'
+import Monedas from './Monedas'
 import "./style.css"
 
 import Swal from 'sweetalert2'
 
 function ProductForm() {
 
-    const {crearProducto} = useContext(CotizadorContext)
+    const {crearProducto, moneda} = useContext(CotizadorContext)
 
     const [descripcion_product, setDescripcion_product] = useState("")
     const [cantidad_product, setCantidad_product] = useState("")
     const [medida, setMedida] = useState("-")
     const [precioUND, setPrecioUND] = useState("")
+   
 
     const Toast = Swal.mixin({
         toast: true,
@@ -60,7 +62,7 @@ function ProductForm() {
                         value={descripcion_product}
                         required/>
 
-                    <div className="row row-cols-1 row-cols-md-3 g-4 mb-3">
+                    <div className="row row-cols-1 row-cols-md-4 g-4 mb-3">
                         <div className="col">
                             <input
                                 className='form-control'
@@ -91,7 +93,10 @@ function ProductForm() {
                                 onChange={(e)=>{setPrecioUND(e.target.value)}}
                                 value={precioUND}
                                 required/>
-                         </div>
+                        </div>
+                        <div className='col'>
+                            <Monedas/>
+                        </div>
                     </div>
                     <div className="d-grid gap-2 col-6 mx-auto">
                         <button 
@@ -103,9 +108,8 @@ function ProductForm() {
                     
                 </div>
             </form>
-             
         </div>
-        
+    
     </>
   )
 }

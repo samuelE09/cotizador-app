@@ -11,6 +11,7 @@ export function CotizadorAppProvider(props) {
     const [subtotal_producto, setSubtotal_producto] = useState(0)
     const [subtotal_obra, setSubtotal_obra] = useState(0)
     const [total, setTotal] = useState(0)
+    const [moneda, setMoneda] = useState();
     
 
     const fecha = new Date()
@@ -68,6 +69,7 @@ export function CotizadorAppProvider(props) {
         medida: producto.medida,
         precioUND: parseFloat(producto.precioUND).toFixed(2),
         precio_total: parseFloat(producto.precio_total).toFixed(2),
+        moneda:producto.moneda,
       }])
       setSubtotal_producto(subtotal_producto + producto.precio_total)
       
@@ -104,6 +106,8 @@ export function CotizadorAppProvider(props) {
     <>
       <CotizadorContext.Provider value={{
          productos,
+         moneda,
+         setMoneda,
          crearProducto,
          borrarProducto,
          ManoObra,
