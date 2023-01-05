@@ -14,7 +14,7 @@ function Monedas() {
             className="form-select text-muted" 
             aria-label="Default select example"
             onChange={enviarMoneda}>
-            <option defaultValue="-">Tipo de Moneda</option>
+            <option value="">Tipo de Moneda</option>
             <option value="S/.">Sol Peruano</option>
             <option value="$">Peso</option>
             <option value="US$">Dólar estadounidense</option>

@@ -8,12 +8,15 @@ export function CotizadorAppProvider(props) {
 
     const [productos, setProductos] = useState([])
     const [ManoObra, setManoObra] = useState([])
+    const [impuestos, setImpuestos] = useState([])
     const [subtotal_producto, setSubtotal_producto] = useState(0)
     const [subtotal_obra, setSubtotal_obra] = useState(0)
+    const [porcentaje, setPorcentaje] = useState(0)
+    const [subtotal_impuesto, setSubtotal_Impuesto] = useState(0)
     const [total, setTotal] = useState(0)
     const [moneda, setMoneda] = useState();
     
-
+   
     const fecha = new Date()
     const hoy = fecha.getDate()
     const mes = fecha.getMonth() +1 
@@ -46,9 +49,16 @@ export function CotizadorAppProvider(props) {
       else{
         setTotal(subtotal_producto + subtotal_obra)
       }
-      
     }, [subtotal_obra])
-    
+
+    useEffect(() => {
+      if (impuestos.length === 0) {
+        setSubtotal_Impuesto(0)
+      }
+      else{
+        setSubtotal_Impuesto(parseFloat(total * (porcentaje/100)).toFixed(2))
+      }
+    }, [total])
 
     const Toast = Swal.mixin({
       toast: true,
@@ -101,6 +111,24 @@ export function CotizadorAppProvider(props) {
       })
     }
 
+    function agregarImpuesto(item) {
+      setImpuestos([{
+        tipoImpuesto : item.tipoImpuesto,
+        valorImpuesto : item.valorImpuesto,
+      }])
+      setPorcentaje(item.valorImpuesto)
+      setSubtotal_Impuesto(parseFloat(total * (item.valorImpuesto/100)).toFixed(2))
+    }
+    function borrarImpuesto(dataIndex) {
+      setImpuestos(impuestos.filter( (data,index) => index != dataIndex ))
+      setSubtotal_Impuesto(0)
+      Toast.fire({
+        icon: 'success',
+        title: `Mano de Obra Eliminado de la Lista!`
+      })
+    }
+
+
     
   return (
     <>
@@ -113,8 +141,11 @@ export function CotizadorAppProvider(props) {
          ManoObra,
          agregarManoObra,
          borrarManoObra,
+         impuestos,
+         agregarImpuesto,
+         borrarImpuesto,
          hoy,mes,año,
-         subtotal_producto,total
+         subtotal_producto,total, subtotal_impuesto
         }}>
           {props.children}
       </CotizadorContext.Provider>

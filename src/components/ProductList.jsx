@@ -1,13 +1,16 @@
-import {useContext} from 'react'
+import {useContext, useState, useEffect} from 'react'
 import {CotizadorContext} from '../contexts/CotizadorApp'
 import ExportPDF from './ExportPDF'
 import ManoObraComponent from './ManoObra'
+import Impuestos from './Impuestos'
 
 function ProductList() {
 
-    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, total, moneda} = useContext(CotizadorContext)
+    const {productos, borrarProducto, ManoObra, borrarManoObra, subtotal_producto, total, moneda, impuestos,borrarImpuesto, subtotal_impuesto} = useContext(CotizadorContext)
+    
+    let montoTotal = parseFloat(total) + parseFloat(subtotal_impuesto)
 
-    if (productos.length == 0 && ManoObra.length==0){
+    if (productos.length == 0 && ManoObra.length==0 && impuestos.length==0){
         return <div className="alert alert-info mt-4 text-center" role="alert">
         <h1>Aun no hay Productos listados</h1>
       </div>
@@ -16,6 +19,7 @@ function ProductList() {
         return (
             <>
             <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+                <Impuestos/>
                 <ManoObraComponent />
                 <ExportPDF />
             </div>
@@ -89,6 +93,7 @@ function ProductList() {
                                     </td>
                                 </tr>           
                             ))}
+
                             <tr className='text-center'>
                                 <th scope="row"></th>
                                 <td className='fw-bold'></td>
@@ -98,6 +103,41 @@ function ProductList() {
                                 <td className='fw-bold'>
                                     <span>{moneda} </span>
                                     {parseFloat(total).toFixed(2)}</td>
+                                <td className='fw-bold'></td>   
+                            </tr>
+
+                            {impuestos.map( (impuesto, index )=> (
+                                <tr key={index} className="text-center" >
+                                    <th scope='row'></th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <strong> {impuesto.tipoImpuesto}: {impuesto.valorImpuesto} %</strong> 
+                                    </td>
+                                    <td className='text-center fw-bold'>
+                                        <span>{moneda} </span>
+                                        {subtotal_impuesto}
+                                    </td>
+                                    <td>
+                                        <button
+                                            className='btn'
+                                            onClick={()=>{borrarImpuesto(index, impuesto.precio_Impuesto)}}>
+                                            <img src="./delete.svg" width="30px" alt=""/>
+                                        </button> 
+                                    </td>
+                                </tr>           
+                            ))}
+
+                            <tr className='text-center'>
+                                <th scope="row"></th>
+                                <td className='fw-bold'></td>
+                                <td className='fw-bold'></td>
+                                <td className='fw-bold'></td>
+                                <td className='fw-bold'>Monto Total</td>
+                                <td className='fw-bold'>
+                                    <span>{moneda} </span>
+                                    {parseFloat(montoTotal).toFixed(2)}</td>
                                 <td className='fw-bold'></td>   
                             </tr>
                         </tbody>
