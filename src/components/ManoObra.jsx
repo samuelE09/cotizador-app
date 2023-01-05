@@ -105,8 +105,6 @@ function ManoObraComponent() {
                         >Agregar Costos
                       </button>
                     </div>
-                    
-                    
                 </form>
             </div>
           </div>
